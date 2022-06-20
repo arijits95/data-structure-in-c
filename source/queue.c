@@ -64,12 +64,16 @@ void display(Queue* queue) {
     }
     int front_index = queue->front;
     int rear_index = queue->rear;
+    
     printf("");
-    while(front_index <= rear_index) {
+    while(front_index != rear_index) {
         int data = queue->array[front_index];
         printf("%d ", data);
         front_index = ((front_index + 1) % queue->capacity);
     }
+
+    int data = queue->array[front_index];
+    printf("%d ", data);
     printf("");
 }
 

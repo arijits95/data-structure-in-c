@@ -1,18 +1,20 @@
-#include "../include/binary_tree.h"
-#include "../include/queue.h"
-#include<limits.h>
 #include<stdio.h>
 #include<stdlib.h>
+#include<limits.h>
+#include "../include/binary_tree.h"
+#include "../include/queue.h"
 
 void test_queue_implementation() {
 
-    Queue* queue = create_queue(1000);
+    Queue* queue = NULL;
     int option = 1;
     int element;
+    unsigned size;
     const int exit_value = 8;
 
     do {
         printf("\n\n----------QUEUE OPERATION----------");
+        printf("\n0.CREATE A QUEUE");
         printf("\n1.ENQUEUE");
         printf("\n2.DEQUEUE");
         printf("\n3.FRONT ITEM");
@@ -26,8 +28,23 @@ void test_queue_implementation() {
         scanf("%d", &option);
         printf("\n\n");
 
+        if (queue == NULL && option != 0) {
+            printf("\nPlease create a queue first by choosing option 0");
+            continue;
+        }
+
         switch (option)
         {
+        case 0:
+
+            printf("\nEnter size of the queue: ");
+            scanf("%u", &size);
+            if (queue != NULL) {
+                free(queue);
+            }
+            queue = create_queue(size);
+            break;
+
         case 1:
 
             printf("\nEnter element to insert: ");
@@ -90,6 +107,10 @@ void test_queue_implementation() {
             break;
 
         case 8:
+
+            if (queue != NULL) {
+                free(queue);
+            }
             return;
 
         default:
