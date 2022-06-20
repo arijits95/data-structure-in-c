@@ -8,6 +8,7 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
+                "${fileDirname}/queue.c",
                 "${fileDirname}/binary_tree.c",
 				"${fileDirname}/data_structure.c",
                 "-o",
@@ -29,6 +30,7 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
+                "${fileDirname}/queue.c",
 				"${fileDirname}/binary_tree.c",
 				"${fileDirname}/data_structures.c",
                 "-o",
