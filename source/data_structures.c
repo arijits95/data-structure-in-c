@@ -3,6 +3,107 @@
 #include<limits.h>
 #include "../include/binary_tree.h"
 #include "../include/queue.h"
+#include "../include/priority_queue.h"
+
+void test_priority_queue_implementation() {
+
+    PriorityQueue* queue = NULL;
+    int option = 1;
+    int element;
+    int priority;
+    unsigned size;
+    const int exit_value = 8;
+
+    do {
+        printf("\n\n----------PRIORITY QUEUE OPERATION----------");
+        printf("\n0.CREATE A PRIORITY QUEUE");
+        printf("\n1.ENQUEUE");
+        printf("\n2.DEQUEUE");
+        printf("\n3.IS QUEUE FULL");
+        printf("\n4.IS QUEUE EMPTY");
+        printf("\n5.DISPLAY");
+        printf("\n6.Exit");
+        printf("\n-----------------------------------\n");
+        printf("\nChoose an operation between (0 to 6):");
+        scanf("%d", &option);
+        printf("\n\n");
+
+        if (queue == NULL && option != 0) {
+            printf("\nPlease create a queue first by choosing option 0");
+            continue;
+        }
+
+        switch (option)
+        {
+        case 0:
+
+            printf("\nEnter size of the queue: ");
+            scanf("%u", &size);
+            if (queue != NULL) {
+                free(queue);
+            }
+            queue = create_priority_queue(size);
+            break;
+
+        case 1:
+
+            printf("\nEnter element to insert: ");
+            scanf("%d", &element);
+
+            printf("\nEnter priority of the element: ");
+            scanf("%d", &priority);
+            enqueue_with_priority(queue, element, priority);
+            break;
+
+        case 2:
+
+            element = dequeue_with_priority(queue);
+            if (element == INT_MIN) {
+                printf("\nQueue is empty");
+            } else {
+                printf("\nDequeued: %d", element);
+            }
+            break;
+
+        case 3:
+
+            if (is_priority_queue_full(queue)) {
+                printf("\nQueue is full");
+            } else {
+                printf("\nQueue is not full");
+            }
+            break;
+            
+        case 4:
+
+            if (is_priority_queue_empty(queue)) {
+                printf("\nQueue is empty");
+            } else {
+                printf("\nQueue is not empty");
+            }
+            break;
+        
+        case 5:
+
+            display_priority_queue(queue);
+            break;
+
+        case 6:
+
+            if (queue != NULL) {
+                free(queue);
+            }
+            return;
+
+        default:
+
+            printf("\nInvalid opeartion. Please choose a valic operation.");
+            break;
+        }
+
+    } while (option != exit_value);
+
+}
 
 void test_queue_implementation() {
 
@@ -145,7 +246,8 @@ void test_binary_tree_implementation(int* input, int size) {
 
 int main(int argc, char** argv) {
 
-    test_queue_implementation();
+    test_priority_queue_implementation();
+    // test_queue_implementation();
 
     // int size;
 
